@@ -1,0 +1,24 @@
+name: Publish Gem
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ruby/setup-ruby@v1
+
+      - run: gem build *.gemspec
+
+      - run: gem push *.gem \
+             --host https://rubygems.pkg.github.com/${{ github.repository_owner }} \
+             --key ${{ secrets.GITHUB_TOKEN }}
