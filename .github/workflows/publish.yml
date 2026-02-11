@@ -20,5 +20,5 @@ jobs:
       - run: gem build *.gemspec
 
       - run: gem push *.gem \
-             --host https://rubygems.pkg.github.com/${{ github.repository_owner }} \
+             --host https://rubygems.pkg.github.com/testmgit \
              --key ${{ secrets.GITHUB_TOKEN }}
